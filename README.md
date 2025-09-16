@@ -1,98 +1,272 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Core - User Authentication and Authorization Service
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A NestJS-based microservice for user authentication and authorization with Swagger API documentation.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Prerequisites
 
-## Description
+Before running this project, make sure you have the following installed:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **Node.js** (version 18 or higher)
+- **npm** or **yarn** package manager
+- **Git** (for cloning the repository)
 
-## Project setup
+## Project Structure
 
-```bash
-$ yarn install
+```
+core/
+├── src/
+│   ├── app.controller.ts      # Main application controller
+│   ├── app.module.ts          # Root application module
+│   ├── app.service.ts         # Main application service
+│   └── main.ts               # Application entry point
+├── test/                      # End-to-end tests
+├── dist/                      # Compiled JavaScript output
+├── package.json              # Project dependencies and scripts
+├── tsconfig.json             # TypeScript configuration
+└── nest-cli.json             # NestJS CLI configuration
 ```
 
-## Compile and run the project
+## Installation
 
-```bash
-# development
-$ yarn run start
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd core
+   ```
 
-# watch mode
-$ yarn run start:dev
+2. **Install dependencies**
+   
+   Using npm:
+   ```bash
+   npm install
+   ```
+   
+   Or using yarn:
+   ```bash
+   yarn install
+   ```
 
-# production mode
-$ yarn run start:prod
+## Configuration
+
+The application uses environment variables for configuration. You can set these variables in your environment or create a `.env` file in the project root.
+
+### Environment Variables
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `APP_PORT` | `3030` | Port number for the application |
+| `APP_API_PREFIX` | `api` | API route prefix |
+| `APP_API_VERSION` | `v1` | API version |
+| `APP_CORS_ORIGIN` | `http://localhost:3000` | CORS origin for cross-origin requests |
+
+### Example .env file
+
+Create a `.env` file in the project root:
+
+```env
+APP_PORT=3030
+APP_API_PREFIX=api
+APP_API_VERSION=v1
+APP_CORS_ORIGIN=http://localhost:3000
 ```
 
-## Run tests
+## Running the Application
+
+### Development Mode
+
+Start the application in development mode with hot reload:
 
 ```bash
-# unit tests
-$ yarn run test
+# Using npm
+npm run start:dev
 
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
+# Using yarn
+yarn start:dev
 ```
 
-## Deployment
+### Production Mode
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+1. **Build the application**
+   ```bash
+   # Using npm
+   npm run build
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+   # Using yarn
+   yarn build
+   ```
+
+2. **Start the production server**
+   ```bash
+   # Using npm
+   npm run start:prod
+
+   # Using yarn
+   yarn start:prod
+   ```
+
+### Debug Mode
+
+Start the application in debug mode:
 
 ```bash
-$ yarn install -g @nestjs/mau
-$ mau deploy
+# Using npm
+npm run start:debug
+
+# Using yarn
+yarn start:debug
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## API Documentation
 
-## Resources
+Once the application is running, you can access the Swagger API documentation at:
 
-Check out a few resources that may come in handy when working with NestJS:
+```
+http://localhost:3030/api/v1/docs
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+The API will be available at:
 
-## Support
+```
+http://localhost:3030/api/v1
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Testing
 
-## Stay in touch
+### Unit Tests
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Run unit tests:
+
+```bash
+# Using npm
+npm run test
+
+# Using yarn
+yarn test
+```
+
+### Watch Mode
+
+Run tests in watch mode:
+
+```bash
+# Using npm
+npm run test:watch
+
+# Using yarn
+yarn test:watch
+```
+
+### Coverage
+
+Generate test coverage report:
+
+```bash
+# Using npm
+npm run test:cov
+
+# Using yarn
+yarn test:cov
+```
+
+### End-to-End Tests
+
+Run end-to-end tests:
+
+```bash
+# Using npm
+npm run test:e2e
+
+# Using yarn
+yarn test:e2e
+```
+
+## Code Quality
+
+### Linting
+
+Run ESLint to check code quality:
+
+```bash
+# Using npm
+npm run lint
+
+# Using yarn
+yarn lint
+```
+
+### Formatting
+
+Format code using Prettier:
+
+```bash
+# Using npm
+npm run format
+
+# Using yarn
+yarn format
+```
+
+## Available Scripts
+
+| Script | Description |
+|--------|-------------|
+| `build` | Compile TypeScript to JavaScript |
+| `format` | Format code using Prettier |
+| `start` | Start the application |
+| `start:dev` | Start in development mode with hot reload |
+| `start:debug` | Start in debug mode |
+| `start:prod` | Start in production mode |
+| `lint` | Run ESLint |
+| `test` | Run unit tests |
+| `test:watch` | Run tests in watch mode |
+| `test:cov` | Generate test coverage |
+| `test:debug` | Run tests in debug mode |
+| `test:e2e` | Run end-to-end tests |
+
+## Technology Stack
+
+- **Framework**: NestJS
+- **Language**: TypeScript
+- **Runtime**: Node.js
+- **Package Manager**: npm/yarn
+- **Testing**: Jest
+- **Linting**: ESLint
+- **Formatting**: Prettier
+- **API Documentation**: Swagger/OpenAPI
+- **Configuration**: @nestjs/config
+
+## Development
+
+### Project Setup
+
+1. Ensure you have Node.js 18+ installed
+2. Clone the repository
+3. Install dependencies with `npm install` or `yarn install`
+4. Create a `.env` file with your configuration
+5. Run `npm run start:dev` or `yarn start:dev`
+
+### Adding New Features
+
+1. Create new modules, controllers, and services following NestJS conventions
+2. Add appropriate tests for new functionality
+3. Update API documentation if needed
+4. Run tests to ensure everything works correctly
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Port already in use**: Change the `APP_PORT` environment variable
+2. **Module not found**: Ensure all dependencies are installed with `npm install`
+3. **TypeScript errors**: Run `npm run build` to check for compilation errors
+4. **CORS issues**: Update the `APP_CORS_ORIGIN` environment variable
+
+### Getting Help
+
+- Check the [NestJS documentation](https://docs.nestjs.com/)
+- Review the Swagger documentation at `/api/v1/docs`
+- Check the application logs for error details
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+This project is licensed under the UNLICENSED license.
